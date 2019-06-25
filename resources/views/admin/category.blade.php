@@ -17,10 +17,19 @@
 							Thêm danh mục
 						</div>
 						<div class="panel-body">
-							<div class="form-group">
+							<form method="post">
+								<div class="form-group">
 								<label>Tên danh mục:</label>
     							<input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
-							</div>
+								</div>
+								<div class="form-group">
+								<label>Mo ta:</label>
+    							<input type="text" name="name" class="form-control" placeholder="Mo ta danh muc...">
+								</div>
+								<div class="form-group">							
+    							<input type="submit" name="name" class="form-control btn btn-primary" placeholder="Tên danh mục..." value="Them moi">
+								</div>
+							</form>
 						</div>
 					</div>
 			</div>
