@@ -93,7 +93,7 @@ Route::get('search',[
 //ADMIN
 Route::group(['namespace'=>'Admin'],function(){
 
-	Route::group(['prefix'=>'login','middleware'=>'CheckLogedIn'],function(){
+	Route::group(['prefix'=>'admin-login','middleware'=>'CheckLogedIn'],function(){
 		Route::get('/','LoginController@getLogin');
 		Route::post('/','LoginController@postLogin');
 	});
@@ -101,12 +101,19 @@ Route::group(['namespace'=>'Admin'],function(){
 	Route::get('logout','HomeController@getLogout');
 
 	Route::group(['prefix'=>'admin','middleware'=>'CheckLogedOut'],function(){
-			Route::get('home','HomeController@getHome');
+			Route::get('/','HomeController@getHome');
 
 			Route::group(['prefix'=>'category'],function(){
 				Route::get('/','CategoryController@getCate');
 				Route::get('edit','CategoryController@getEditCate');
 			});
+
+			Route::group(['prefix'=>'product'],function(){
+				Route::get('/','ProductController@getProduct');
+				Route::get('edit','ProductController@getEditProduct');
+			});
+
+
 		});
 });
 
