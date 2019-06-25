@@ -33,6 +33,8 @@
 				              	<thead>
 					                <tr class="bg-primary">
 					                  <th>Tên danh mục</th>
+					                  <th>Mo ta</th>
+					                  <th>Image</th>
 					                  <th style="width:30%">Tùy chọn</th>
 					                </tr>
 				              	</thead>
@@ -40,6 +42,10 @@
 				              	@foreach($cates as $cate)
 								<tr>
 									<td>{{$cate->name}}</td>
+									<td>{{$cate->description}}</td>
+									<td>
+												<img width="263px" height="215px" src="image/product/{{$cate->image}}">
+											</td>
 									<td>
 			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
 			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
@@ -47,7 +53,7 @@
 			                  	</tr>
 			                  	@endforeach
 				                </tbody>
-				                
+
 				            </table>
 						</div>
 						<div class="clearfix"></div>
