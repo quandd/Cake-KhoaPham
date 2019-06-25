@@ -111,7 +111,14 @@ Route::group(['namespace'=>'Admin'],function(){
 
 			Route::group(['prefix'=>'product'],function(){
 				Route::get('/','ProductController@getProduct');
-				Route::get('edit','ProductController@getEditProduct');
+
+				Route::get('add','ProductController@getAddProduct');
+				Route::get('add','ProductController@postAddProduct');
+
+				Route::get('edit/{id}','ProductController@getEditProduct');
+				Route::post('edit/{id}','ProductController@postEditProduct');
+
+				Route::get('delete/{id}','ProductController@getDeleteProduct');
 			});
 
 
