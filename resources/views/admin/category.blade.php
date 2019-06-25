@@ -24,10 +24,15 @@
 								</div>
 								<div class="form-group">
 								<label>Mo ta:</label>
-    							<input type="text" name="name" class="form-control" placeholder="Mo ta danh muc...">
+    							<input type="text" name="desc" class="form-control" placeholder="Mo ta danh muc...">
 								</div>
+								<div class="form-group" >
+										<label>Ảnh sản phẩm</label>
+										<input required id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
+					                    <img id="avatar" class="thumbnail" width="300px" src="img/new_seo-10-512.png">
+									</div>
 								<div class="form-group">							
-    							<input type="submit" name="name" class="form-control btn btn-primary" placeholder="Tên danh mục..." value="Them moi">
+    							<input type="submit" name="submit" class="form-control btn btn-primary" placeholder="Tên danh mục..." value="Them moi">
 								</div>
 							</form>
 						</div>
