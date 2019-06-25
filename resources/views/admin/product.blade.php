@@ -24,91 +24,33 @@
 										<tr class="bg-primary">
 											<th>ID</th>
 											<th width="30%">Tên Sản phẩm</th>
-											<th>Giá sản phẩm</th>
+											<th>Gia thuong</th>
+											<th>Gia khuyen mai</th>
 											<th width="20%">Ảnh sản phẩm</th>
-											<th>Danh mục</th>
+											<th>Loai san pham</th>
+											<th>Mo ta</th>
+											
 											<th>Tùy chọn</th>
 										</tr>
 									</thead>
 									<tbody>
+										@foreach($products as $product)
 										<tr>
-											<td>1</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
+											<td>{{$product->id}}</td>
+											<td>{{$product->name}}</td>
+											<td>{{number_format($product->unit_price)}} đồng</td>
+											<td>{{number_format($product->promotion_price)}} đồng</td>
 											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
+												<img width="263px" height="215px" src="image/product/{{$product->image}}">
 											</td>
-											<td>iPhone</td>
+											<td>{{$product->id_type}}</td>
+											<td>{{$product->description}}</td>
 											<td>
 												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
 												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
 										</tr>
-										<tr>
-											<td>2</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
-										<tr>
-											<td>6</td>
-											<td>iPhone 7 Plus 32GB quốc tế Mate Black</td>
-											<td>21.990.000 VND</td>
-											<td>
-												<img width="200px" src="img/iphone7-plus-black-select-2016.jpg" class="thumbnail">
-											</td>
-											<td>iPhone</td>
-											<td>
-												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
-											</td>
-										</tr>
+										@endforeach
 									</tbody>
 								</table>							
 							</div>

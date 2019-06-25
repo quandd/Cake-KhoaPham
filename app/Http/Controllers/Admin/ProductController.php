@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
 
 class ProductController extends Controller
 {
     //
     public function getProduct(){
-    	return view('admin.product');
+    	$products =  Product::all();
+    	return view('admin.product',compact('products'));
     }
 
     public function getEditProduct(){
