@@ -22,12 +22,12 @@ Route::get('index',[
 
 Route::get('loai-san-pham/{type}',[
 	'as'=>'loaisanpham',
-	'uses'=>'PageController@getLoaiSp'
+	'uses'=>'PageController@getCategory'
 ]);
 
 Route::get('chi-tiet-san-pham/{id}',[
 	'as'=>'chitietsanpham',
-	'uses'=>'PageController@getChitiet'
+	'uses'=>'PageController@getProduct'
 ]);
 
 Route::get('lien-he',[

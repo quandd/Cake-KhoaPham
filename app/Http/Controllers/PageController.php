@@ -12,6 +12,8 @@ use App\BillDetail;
 use App\User;
 use Hash;
 use Auth;
+use App\Http\Requests\SigninRequest;
+use App\Http\Requests\LoginRequest;
 
 use Illuminate\Http\Request;
 
@@ -28,7 +30,7 @@ class PageController extends Controller
     	return view('page.trangchu',compact('slide', 'new_product','sanpham_khuyenmai'));
     }
 
-    public function getLoaiSp($type){
+    public function getCategory($type){
     	$sp_theoloai = Product::where('id_type',$type)->get();
     	$sp_khac = Product::where('id_type','<>',$type)->paginate(3);
     	$loai = ProductType::all();
@@ -36,7 +38,7 @@ class PageController extends Controller
     	return view('page.loai_sanpham',compact('sp_theoloai','sp_khac','loai','loai_sp'));
     }
 
-    public function getChitiet(Request $req){
+    public function getProduct(Request $req){
     	$sanpham = Product::where('id',$req->id)->first();
     	$sp_tuongtu = Product::where('id_type',$sanpham->id_type)->paginate(6);
     	return view('page.chitiet_sanpham',compact('sanpham','sp_tuongtu'));
@@ -116,23 +118,7 @@ class PageController extends Controller
     	return view('page.dangki');
     }
 
-    public function postSignin(Request $req){
-    	$this->validate($req,
-    		[
-    			'email'=>'required|email|unique:users,email',
-    			'password'=>'required|min:6|max:20',
-    			'fullname'=>'required|',
-    			're_password'=>'required|same:password'
-    		],
-    		[
-    			'email.required'=>'Vui lòng nhập email',
-    			'email.email'=>'Không đúng định dạnh email',
-    			'email.unique'=>'Email đã có người sử dụng',
-    			'password.required'=>'Vui lòng nhập mật khẩu',
-    			're_password'=>'Mật khẩu không giống nhau',
-    			'password.min'=>'Mật khẩu phải trên 6 kí tự',
-    			'password.max'=>'Mật khẩu phải không quá 20 kí tự'
-    		]);
+    public function postSignin(SigninRequest $req){
     	$user = new User();
     	$user->full_name = $req->fullname;
     	$user->email = $req->email;
@@ -140,23 +126,10 @@ class PageController extends Controller
     	$user->phone = $req->phone;
     	$user->address = $req->address;
     	$user->save();
-    	return redirect()->back()->with('thanhcong','Đã tạo thành công tài khoản!');
+    	return redirect()->back()->with('success','Đã tạo thành công tài khoản!');
     }
 
-    public function postLogin(Request $req){
-    	$this->validate($req,
-    			[
-    				'email'=>'required|email',
-    				'password'=>'required|min:6|max:20'
-    			],
-    			[
-    				'email.required'=>'Vui lòng nhập email',
-    				'email.email'=>'Email không đúng định dạng',
-    				'password.required'=>'Vui lòng nhập mật khẩu',
-    				'password.min'=>'Mật khẩu ít nhất 6 kí tự',
-    				'password.max'=>'Mật khẩu dài nhất 20 kí tự'
-    			]
-    	);
+    public function postLogin(LoginRequest $req){
     	$credentials = array('email'=>$req->email,'password'=>$req->password);
     	if(Auth::attempt($credentials)){
     		return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công!']);
