@@ -5,6 +5,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
+use App\Http\Requests\AddProductRequest;
 
 class ProductController extends Controller
 {
@@ -22,7 +23,7 @@ class ProductController extends Controller
     	return view('admin.addproduct');
     }
 
-    public function postAddProduct(){
+    public function postAddProduct(AddProductRequest $request){
     	return view('admin.addproduct');
     }
 

@@ -18,6 +18,7 @@
 					<div class="panel-heading">Thêm sản phẩm</div>
 					<div class="panel-body">
 						<form method="post" enctype="multipart/form-data">
+							<input type="hidden" name="_token" value="{{csrf_token()}}">
 							<div class="row" style="margin-bottom:40px">
 								<div class="col-xs-8">
 									<div class="form-group" >
