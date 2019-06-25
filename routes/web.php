@@ -22,12 +22,12 @@ Route::get('index',[
 
 Route::get('loai-san-pham/{type}',[
 	'as'=>'loaisanpham',
-	'uses'=>'PageController@getLoaiSp'
+	'uses'=>'PageController@getCategory'
 ]);
 
 Route::get('chi-tiet-san-pham/{id}',[
 	'as'=>'chitietsanpham',
-	'uses'=>'PageController@getChitiet'
+	'uses'=>'PageController@getProduct'
 ]);
 
 Route::get('lien-he',[
@@ -93,7 +93,7 @@ Route::get('search',[
 //ADMIN
 Route::group(['namespace'=>'Admin'],function(){
 
-	Route::group(['prefix'=>'login','middleware'=>'CheckLogedIn'],function(){
+	Route::group(['prefix'=>'admin-login','middleware'=>'CheckLogedIn'],function(){
 		Route::get('/','LoginController@getLogin');
 		Route::post('/','LoginController@postLogin');
 	});
@@ -101,7 +101,8 @@ Route::group(['namespace'=>'Admin'],function(){
 	Route::get('logout','HomeController@getLogout');
 
 	Route::group(['prefix'=>'admin','middleware'=>'CheckLogedOut'],function(){
-			Route::get('home','HomeController@getHome');
+
+			Route::get('/','HomeController@getHome');
 
 			Route::group(['prefix'=>'category'],function(){
 				Route::get('/','CategoryController@getCate');

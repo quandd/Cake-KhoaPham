@@ -32,8 +32,8 @@
 						</div>
 					@endif
 
-					@if(Session::has('thanhcong'))
-						<div class="alert alert-success"><h3>{{Session::get('thanhcong')}}</h3></div>
+					@if(Session::has('success'))
+						<div class="alert alert-success"><h3>{{Session::get('success')}}</h3></div>
 					@endif
 
 					<div class="col-sm-6">
