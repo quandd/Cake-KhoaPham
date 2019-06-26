@@ -18,7 +18,7 @@
 						</div>
 						<div class="panel-body">
 						@include('errors.note')
-							<form method="post" action="{{asset('admin/category/edit')}}>
+							<form method="post" action="{{asset('admin/category/edit/{id}')}}">
 								@csrf
 							<div class="form-group">
 								<label>Tên danh mục:</label>

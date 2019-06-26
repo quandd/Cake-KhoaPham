@@ -18,10 +18,11 @@ class CategoryController extends Controller
     public function postCate(AddCateRequest $request){
     	$category =  new ProductType;
     	$category->name = $request->name;
+    	$fileName = $request->img->getClientOriginalName();
     	$category->description = $request->desc;
     	$file = $request->file('img');
-    	$file->move('layout/backend/image/product');
-    	$category->image = $request->img;
+    	$move = $file->move('layout/backend/image/product',$fileName);
+    	$category->image = $fileName;
     	$category->save();
     	return back()->with('notification','Them thanh cong.');
     }
@@ -32,7 +33,6 @@ class CategoryController extends Controller
     }
 
     public function postEditCate(EditCateRequest $request,$id){
-    	dd($request);
     	$category =  ProductType::find($id);
     	$category->name = $request->name;
     	$category->description = $request->desc;
