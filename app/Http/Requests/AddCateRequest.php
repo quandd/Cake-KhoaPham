@@ -26,12 +26,14 @@ class AddCateRequest extends FormRequest
         return [
             //
             'name'=>'unique:type_products,name'
+          
         ];
     }
 
     public function messages(){
         return[
             'name.unique'=>'Ten danh muc da bi trung'
+ 
         ];
     }
 }

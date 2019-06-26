@@ -17,8 +17,11 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Thêm sản phẩm</div>
 					<div class="panel-body">
-						<form method="post" enctype="multipart/form-data">
-							<input type="hidden" name="_token" value="{{csrf_token()}}">
+						@include('errors.note')
+							@if(Session::has('notification'))
+								<p class="alert alert-success">{{Session::get('notification')}}</p>
+							@endif
+						<form method="post" enctype="multipart/form-data" action="{{asset('admin/product/add')}}">				@csrf
 							<div class="row" style="margin-bottom:40px">
 								<div class="col-xs-8">
 									<div class="form-group" >
@@ -26,59 +29,47 @@
 										<input required type="text" name="name" class="form-control">
 									</div>
 									<div class="form-group" >
+										<label>Miêu tả</label>
+										<textarea required name="desc"></textarea>
+									</div>
+									<div class="form-group" >
 										<label>Giá sản phẩm</label>
-										<input required type="number" name="price" class="form-control">
+										<input required type="number" name="u_price" class="form-control">
 									</div>
 									<div class="form-group" >
-										<label>Ảnh sản phẩm</label>
-										<input required id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
-					                    <img id="avatar" class="thumbnail" width="300px" src="img/new_seo-10-512.png">
+										<label>Giá khuyen mai</label>
+										<input required type="number" name="p_price" class="form-control">
 									</div>
 									<div class="form-group" >
-										<label>Phụ kiện</label>
-										<input required type="text" name="accessories" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Bảo hành</label>
-										<input required type="text" name="warranty" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Khuyến mãi</label>
-										<input required type="text" name="promotion" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Tình trạng</label>
-										<input required type="text" name="condition" class="form-control">
-									</div>
-									<div class="form-group" >
-										<label>Trạng thái</label>
-										<select required name="status" class="form-control">
-											<option value="1">Còn hàng</option>
-											<option value="0">Hết hàng</option>
+										<label>Don vi</label>
+										<select required name="unit" class="form-control">
+											<option value="Cai">Cai</option>
+											<option value="Hop">Hop</option>
 					                    </select>
 									</div>
 									<div class="form-group" >
-										<label>Miêu tả</label>
-										<textarea required name="description"></textarea>
+										<label>Danh mục</label>
+										<select required name="new" class="form-control">
+											<option value="1">New</option>
+											<option value="0">Like New</option>
+					                    </select>
 									</div>
 									<div class="form-group" >
 										<label>Danh mục</label>
 										<select required name="cate" class="form-control">
-											<option value="1">iPhone</option>
-											<option value="2">Samsung</option>
-											<option value="3">Nokia</option>
-											<option value="4">HTC</option>
-											<option value="5">LG</option>
-											<option value="6">Sony</option>
+											@foreach($catelist as $cates)
+											<option value="{{$cates->id}}">{{$cates->name}}</option>
+											@endforeach
 					                    </select>
 									</div>
 									<div class="form-group" >
-										<label>Sản phẩm nổi bật</label><br>
-										Có: <input type="radio" name="featured" value="1">
-										Không: <input type="radio" checked name="featured" value="0">
+										<label>Ảnh sản phẩm</label>
+										<input type="file" name="img" class="form-control" required="">
 									</div>
+
+									
 									<input type="submit" name="submit" value="Thêm" class="btn btn-primary">
-									<a href="#" class="btn btn-danger">Hủy bỏ</a>
+									<a href="{{asset('admin/product')}}" class="btn btn-danger">Hủy bỏ</a>
 								</div>
 							</div>
 						</form>

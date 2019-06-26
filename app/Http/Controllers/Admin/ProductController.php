@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
@@ -20,11 +21,29 @@ class ProductController extends Controller
     }
 
     public function getAddProduct(){
-    	return view('admin.addproduct');
+        $data['catelist'] = ProductType::all();
+    	return view('admin.addproduct',$data);
     }
 
     public function postAddProduct(AddProductRequest $request){
-    	return view('admin.addproduct');
+        $product =  new Product;
+        $product->name = $request->name;
+        $product->description = $request->desc;
+        $product->unit_price = $request->u_price;
+        $product->promotion_price = $request->p_price;
+        $product->unit = $request->unit;
+        $product->new = $request->new;
+        $product->id_type = $request->cate;
+
+
+        $fileName = $request->img->getClientOriginalName();
+        $file = $request->file('img');
+        $move = $file->move('layout/backend/image/product',$fileName);
+        $product->image = $fileName;
+
+        $product->save();
+
+        return back()->with('notification','Them thanh cong.');
     }
 
 }

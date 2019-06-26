@@ -28,8 +28,7 @@
 											<th>Gia khuyen mai</th>
 											<th width="20%">Ảnh sản phẩm</th>
 											<th>Loai san pham</th>
-											<th>Mo ta</th>
-											
+											<th>Mo ta</th>		
 											<th>Tùy chọn</th>
 										</tr>
 									</thead>
