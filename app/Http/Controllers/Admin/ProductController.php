@@ -16,8 +16,10 @@ class ProductController extends Controller
     	return view('admin.product',compact('products'));
     }
 
-    public function getEditProduct(){
-    	return view('admin.editproduct');
+    public function getEditProduct($id){
+    	$products = Product::find($id);
+        $catelist = ProductType::all();
+        return view('admin.editproduct',compact('products','catelist'));
     }
 
     public function getAddProduct(){
