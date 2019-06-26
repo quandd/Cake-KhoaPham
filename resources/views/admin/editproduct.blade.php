@@ -15,6 +15,9 @@
 					<div class="panel-heading">Sửa sản phẩm</div>
 					<div class="panel-body">
 						@include('errors.note')
+						@if(Session::has('notification'))
+								<p class="alert alert-success">{{Session::get('notification')}}</p>
+							@endif
 							<form method="post" action="{{asset('admin/product/edit/'.$products->id)}}" enctype="multipart/form-data">
 								@csrf
 							<div class="form-group">
