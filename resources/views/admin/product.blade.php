@@ -16,6 +16,9 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Danh sách sản phẩm</div>
 					<div class="panel-body">
+						@if(Session::has('notification'))
+								<p class="alert alert-success">{{Session::get('notification')}}</p>
+							@endif
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 								<a href="{{asset('admin/product/add')}}" class="btn btn-primary">Thêm sản phẩm</a>
@@ -50,7 +53,7 @@
 											<td>{{$product->description}}</td>
 											<td>
 												<a href="#" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+												<a href="{{asset('admin/product/delete/'.$product->id)}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
 											</td>
 										</tr>
 										@endforeach

@@ -46,4 +46,9 @@ class ProductController extends Controller
         return back()->with('notification','Them thanh cong.');
     }
 
+    public function getDeleteProduct($id){
+        Product::destroy($id);
+        return back()->with('notification','Xoa thanh cong.');
+    }
+
 }
