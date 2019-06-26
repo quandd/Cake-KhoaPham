@@ -25,13 +25,13 @@ class EditProductRequest extends FormRequest
     {
         return [
             //
-            // 'name'=>'unique:id,name,'.$this->segment(4).',id'
+            'name'=>'unique:products,name,'.$this->segment(4).',id'
         ];
     }
 
     public function messages(){
         return[
-            // 'name.unique'=>'Ten san pham da bi trung'
+            'name.unique'=>'Ten san pham da bi trung'
         ];
     }
 }
