@@ -72,7 +72,9 @@
 			                  	@endforeach
 				                </tbody>
 
+
 				            </table>
+				            <div class="row">{{$cates->links()}}</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>

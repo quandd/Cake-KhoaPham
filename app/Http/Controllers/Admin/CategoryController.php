@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     //
     public function getCate(){
-    	$cates =  ProductType::all();
+    	$cates =  ProductType::paginate(5);
     	return view('admin.category', compact('cates'));
     }
 
