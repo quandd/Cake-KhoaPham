@@ -41,7 +41,7 @@
 											<td>{{number_format($product->unit_price)}} đồng</td>
 											<td>{{number_format($product->promotion_price)}} đồng</td>
 											<td>
-												<img width="263px" height="215px" src="image/product/{{$product->image}}">
+												<img width="100px" height="80px" src="image/product/{{$product->image}}">
 											</td>
 											<td>{{$product->id_type}}</td>
 											<td>{{$product->description}}</td>
@@ -52,7 +52,8 @@
 										</tr>
 										@endforeach
 									</tbody>
-								</table>							
+								</table>
+								<div class="row">{{$products->links()}}</div>							
 							</div>
 						</div>
 						<div class="clearfix"></div>
