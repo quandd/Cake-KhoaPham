@@ -107,7 +107,10 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::group(['prefix'=>'category'],function(){
 				
 				Route::get('/','CategoryController@getCate');
-				Route::get('edit','CategoryController@getEditCate');
+
+				Route::get('edit/{id}','CategoryController@getEditCate');
+				Route::post('edit/{id}','CategoryController@postEditCate');
+
 				Route::post('add','CategoryController@postCate');
 			});
 

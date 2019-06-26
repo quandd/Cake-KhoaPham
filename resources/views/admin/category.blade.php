@@ -33,12 +33,11 @@
 								</div>
 								<div class="form-group" >
 										<label>Ảnh sản phẩm</label>
-										<input type="file" name="img" class="form-control">
+										<input type="file" name="img" class="form-control" required="">
 								</div>
 								<div class="form-group">							
     							<input type="submit" name="submit" class="form-control btn btn-primary" placeholder="Tên danh mục..." value="Them moi">
 								</div>
-								{{csrf_field()}}
 							</form>
 						</div>
 					</div>
@@ -66,7 +65,7 @@
 												<img width="263px" height="215px" src="image/product/{{$cate->image}}">
 											</td>
 									<td>
-			                    		<a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
+			                    		<a href="{{asset('admin/category/edit/'.$cate->id)}}" class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
 			                    		<a href="#" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 			                  		</td>
 			                  	</tr>
