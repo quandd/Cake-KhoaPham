@@ -33,12 +33,13 @@ class CategoryController extends Controller
     }
 
     public function postEditCate(EditCateRequest $request,$id){
-    	$category =  ProductType::find($id);
+    	$category = ProductType::find($id);
     	$category->name = $request->name;
-    	$category->description = $request->desc;
-    	// $file = $request->file('img');
-    	// $file->move('layout/backend/image/product');
-    	// $category->image = $request->img;
+    	$fileName = $request->img->getClientOriginalName();
+        $category->description = $request->desc;
+        $file = $request->file('img');
+        $move = $file->move('layout/backend/image/product',$fileName);
+        $category->image = $fileName;
     	$category->save();
     	return redirect()->intended('admin/category')->with('notification','Sua thanh cong.');  	
     }

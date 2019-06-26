@@ -18,19 +18,18 @@
 						</div>
 						<div class="panel-body">
 						@include('errors.note')
-							<form method="post" action="{{asset('admin/category/edit/{id}')}}">
+							<form method="post" action="{{asset('admin/category/edit/'.$cates->id)}}" enctype="multipart/form-data">
 								@csrf
 							<div class="form-group">
 								<label>Tên danh mục:</label>
     							<input type="text" name="name" class="form-control" placeholder="Tên danh mục..." value="{{$cates->name}}">
 							</div>
 							<label>Mo ta:</label>
-    							<input type="text" name="desc" class="form-control" placeholder="Mo ta danh muc..." value="{{$cates->description}}">
-    							
+    							<input type="text" name="desc" class="form-control" placeholder="Mo ta danh muc..." value="{{$cates->description}}">    							
 								</div>
 							<div class="form-group" >
 										<label>Ảnh sản phẩm</label>
-										<input type="file" name="img" class="form-control">
+										<input type="file" name="img" class="form-control" required="">
 										<img id="avatar" class="thumbnail" width="300px" src="image/product/{{$cates->image}}">
 							</div>
 							<div class="form-group">							

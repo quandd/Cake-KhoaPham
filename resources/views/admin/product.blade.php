@@ -39,7 +39,11 @@
 											<td>{{$product->id}}</td>
 											<td>{{$product->name}}</td>
 											<td>{{number_format($product->unit_price)}} đồng</td>
+											@if($product->promotion_price==0)
+											<td>Khong khuyen mai</td>
+											@else
 											<td>{{number_format($product->promotion_price)}} đồng</td>
+											@endif
 											<td>
 												<img width="100px" height="80px" src="image/product/{{$product->image}}">
 											</td>
