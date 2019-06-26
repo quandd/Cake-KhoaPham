@@ -17,7 +17,12 @@
 							Thêm danh mục
 						</div>
 						<div class="panel-body">
-							<form method="post">
+							@include('errors.note')
+							@if(Session::has('notification'))
+								<p class="alert alert-success">{{Session::get('notification')}}</p>
+							@endif
+							<form method="post" action="{{asset('admin/category/add')}}" enctype="multipart/form-data">
+								@csrf
 								<div class="form-group">
 								<label>Tên danh mục:</label>
     							<input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
@@ -28,12 +33,12 @@
 								</div>
 								<div class="form-group" >
 										<label>Ảnh sản phẩm</label>
-										<input required id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
-					                    <img id="avatar" class="thumbnail" width="300px" src="img/new_seo-10-512.png">
-									</div>
+										<input type="file" name="img" class="form-control">
+								</div>
 								<div class="form-group">							
     							<input type="submit" name="submit" class="form-control btn btn-primary" placeholder="Tên danh mục..." value="Them moi">
 								</div>
+								{{csrf_field()}}
 							</form>
 						</div>
 					</div>

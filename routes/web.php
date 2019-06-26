@@ -105,8 +105,10 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::get('/','HomeController@getHome');
 
 			Route::group(['prefix'=>'category'],function(){
+				
 				Route::get('/','CategoryController@getCate');
 				Route::get('edit','CategoryController@getEditCate');
+				Route::post('add','CategoryController@postCate');
 			});
 
 			Route::group(['prefix'=>'product'],function(){
