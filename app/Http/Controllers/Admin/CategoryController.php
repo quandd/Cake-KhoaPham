@@ -43,5 +43,10 @@ class CategoryController extends Controller
     	return redirect()->intended('admin/category')->with('notification','Sua thanh cong.');  	
     }
 
+    public function getDeleteCate($id){
+    	ProductType::destroy($id);
+    	return back()->with('notification','Xoa thanh cong.');
+    }
+
     
 }

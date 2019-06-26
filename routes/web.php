@@ -107,11 +107,12 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::group(['prefix'=>'category'],function(){
 				
 				Route::get('/','CategoryController@getCate');
+				Route::post('add','CategoryController@postCate');
 
 				Route::get('edit/{id}','CategoryController@getEditCate');
 				Route::post('edit/{id}','CategoryController@postEditCate');
 
-				Route::post('add','CategoryController@postCate');
+				Route::get('delete/{id}','CategoryController@getDeleteCate');
 			});
 
 			Route::group(['prefix'=>'product'],function(){
