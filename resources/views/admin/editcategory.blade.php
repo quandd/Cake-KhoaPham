@@ -29,7 +29,7 @@
 								</div>
 							<div class="form-group" >
 										<label>Ảnh sản phẩm</label>
-										<input type="file" name="img" class="form-control" required="">
+										<input type="file" name="img" class="form-control">
 										<img id="avatar" class="thumbnail" width="300px" src="image/product/{{$cates->image}}">
 							</div>
 							<div class="form-group">							

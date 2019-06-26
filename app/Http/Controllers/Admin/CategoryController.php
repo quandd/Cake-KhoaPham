@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\ProductType;
 use Illuminate\Http\Request;
+use Session;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCateRequest;
 use App\Http\Requests\EditCateRequest;
@@ -35,11 +36,14 @@ class CategoryController extends Controller
     public function postEditCate(EditCateRequest $request,$id){
     	$category = ProductType::find($id);
     	$category->name = $request->name;
-    	$fileName = $request->img->getClientOriginalName();
         $category->description = $request->desc;
+        if($request->img)
+        {
+        $fileName = $request->img->getClientOriginalName();
         $file = $request->file('img');
         $move = $file->move('layout/backend/image/product',$fileName);
         $category->image = $fileName;
+        }
     	$category->save();
     	return redirect()->intended('admin/category')->with('notification','Sua thanh cong.');  	
     }
