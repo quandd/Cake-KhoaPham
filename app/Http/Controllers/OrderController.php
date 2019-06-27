@@ -46,7 +46,7 @@ class OrderController extends Controller
         $customer->email = $req->email;
         $customer->address = $req->address;
         $customer->phone_number = $req->phone;
-        if($req->note){
+        if($req->notes){
             $customer->note = $req->notes;
         }
         else{
@@ -59,7 +59,7 @@ class OrderController extends Controller
         $bill->date_order = date('Y-m-d');
         $bill->total = $cart->totalPrice;
         $bill->payment = $req->payment_method;
-        if($req->note){
+        if($req->notes){
         $bill->note = $req->notes;
         }
         else{
