@@ -25,15 +25,19 @@ class EditProductRequest extends FormRequest
     {
         return [
             //
-            'img'=>'image',
-            'name'=>'unique:products,name,'.$this->segment(4).',id'
+            'img'=>'required|image',
+            'name'=>'required|min:6|max:30|unique:products,name,'.$this->segment(4).',id'
         ];
     }
 
     public function messages(){
         return[
-            'name.unique'=>'Ten danh muc da bi trung',
-            'name.unique'=>'Ten san pham da bi trung'
+            'img.image'=>'Vui long chon file anh(jpg,png,...)',
+            'img.required'=>'Vui long chon file anh',
+            'name.unique'=>'Ten san pham da bi trung',
+            'name.required'=>'Moi nhap ten san pham',
+            'name.min'=>'Ten san pham phai nhieu hon 3 ki tu',
+            'name.max'=>'Ten san pham phai it hon 30 ki tu'
         ];
     }
 }
