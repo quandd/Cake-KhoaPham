@@ -51,7 +51,11 @@
 										<label>Danh mục</label>
 										<select required name="cate" class="form-control">
 											@foreach($catelist as $cates)
-											<option value="{{$cates->id}}">{{$cates->name}}</option>
+                                                @if($products->id_type == $cates->id)
+											<option value="{{$cates->id}}" selected>{{$cates->name}}</option>
+                                                @else
+                                                    <option value="{{$cates->id}}">{{$cates->name}}</option>
+                                                    @endif
 											@endforeach
 					                    </select>
 							</div>
