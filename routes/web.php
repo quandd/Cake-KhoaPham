@@ -42,52 +42,53 @@ Route::get('gioi-thieu',[
 
 Route::get('add-to-cart/{id}',[
 	'as'=>'themgiohang',
-	'uses'=>'PageController@getAddtoCart'
+	'uses'=>'CartController@create'
 ]);
 
 Route::get('del-cart/{id}',[
 	'as'=>'xoagiohang',
-	'uses'=>'PageController@getDelItemCart'
+	'uses'=>'CartController@destroy'
 ]);
 
 Route::get('dat-hang',[
 	'as'=>'dathang',
-	'uses'=>'PageController@getCheckout'
+	'uses'=>'OrderController@index'
 ]);
 
 Route::post('dat-hang',[
 	'as'=>'dathang',
-	'uses'=>'PageController@postCheckout'
+	'uses'=>'OrderController@store'
 ]);
 
 Route::get('dang-nhap',[
 	'as'=>'login',
-	'uses'=>'PageController@getLogin'
+	'uses'=>'LoginController@index'
 ]);
 
 Route::post('dang-nhap',[
 	'as'=>'login',
-	'uses'=>'PageController@postLogin'
+	'uses'=>'LoginController@checkLogin'
 ]);
+
 
 Route::get('dang-ki',[
 	'as'=>'signin',
-	'uses'=>'PageController@getSignin'
+	'uses'=>'SigninController@index'
 ]);
 
 Route::post('dang-ki',[
 	'as'=>'signin',
-	'uses'=>'PageController@postSignin'
+	'uses'=>'SigninController@store'
 ]);
 
 Route::get('dang-xuat',[
 	'as'=>'logout',
-	'uses'=>'PageController@getLogout'
+	'uses'=>'LogoutController@show'
 ]);
 ;
 Route::get('search',[
 	'as'=>'search',
-	'uses'=>'PageController@getSearch'
+	'uses'=>'SearchController@show'
 ]);
 
 //ADMIN
