@@ -30,15 +30,15 @@
 							</div>
 							<div class="form-group">
 							<label>Gia san pham:</label>
-    							<input type="text" name="desc" class="form-control" placeholder="Mo ta danh muc..." value="{{$products->unit_price}}">    							
+    							<input type="text" name="u_price" class="form-control" placeholder="Mo ta danh muc..." value="{{$products->unit_price}}">
 							</div>
 							<div class="form-group">
 							<label>Gia khuyen mai:</label>
-    							<input type="text" name="desc" class="form-control" placeholder="Mo ta danh muc..." value="{{$products->promotion_price}}">    							
+    							<input type="text" name="p_price" class="form-control" placeholder="Mo ta danh muc..." value="{{$products->promotion_price}}">
 							</div>
 							<div class="form-group">
 							<label>Don vi:</label>
-    							<input type="text" name="desc" class="form-control" placeholder="Mo ta danh muc..." value="{{$products->unit}}">    							
+    							<input type="text" name="unit" class="form-control" placeholder="Mo ta danh muc..." value="{{$products->unit}}">
 							</div>
 							<div class="form-group" >
 										<label>Tinh trang</label>
