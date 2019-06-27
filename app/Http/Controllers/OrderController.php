@@ -37,6 +37,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $req){
+        if(Session::has('cart')){
         $cart = Session::get('cart');
 
         $customer = new Customer;
@@ -75,7 +76,10 @@ class OrderController extends Controller
             $bill_detail->save();
         }
         Session::forget('cart');
-        return redirect()->back()->with('thongbao','Đặt hàng thành công');
+        return redirect()->back()->with(['note'=>'success','message'=>'Đặt hàng thành công']);
+        }else{
+            return redirect()->back()->with(['note'=>'danger','message'=>'Gio hang rong']);
+        }
     }
 
     /**
