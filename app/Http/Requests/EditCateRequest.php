@@ -25,13 +25,15 @@ class EditCateRequest extends FormRequest
     {
         return [
             //
+            'img'=>'image',
             'name'=>'unique:type_products,name,'.$this->segment(4).',id'
         ];
     }
 
     public function messages(){
         return[
-            'name.unique'=>'Ten danh muc da bi trung'
+            'name.unique'=>'Ten danh muc da bi trung',
+            'img.image'=>'Moi chon file anh'
         ];
     }
 }

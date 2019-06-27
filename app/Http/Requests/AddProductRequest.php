@@ -25,7 +25,14 @@ class AddProductRequest extends FormRequest
     {
         return [
             //
-            'img'=>'image'
+            'img'=>'image',
+            'name'=>'unique:products,name'
+        ];
+    }
+    public function messages(){
+        return[
+            'img.image'=>'Moi chon file anh',
+            'name.unique'=>'San pham da ton tai'
         ];
     }
 }

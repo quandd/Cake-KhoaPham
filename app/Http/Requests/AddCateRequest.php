@@ -25,15 +25,15 @@ class AddCateRequest extends FormRequest
     {
         return [
             //
+            'img'=>'image',
             'name'=>'unique:type_products,name'
-          
         ];
     }
 
     public function messages(){
         return[
-            'name.unique'=>'Ten danh muc da bi trung'
- 
+            'name.unique'=>'Ten danh muc da bi trung',
+            'img.image'=>'Moi chon file anh'
         ];
     }
 }

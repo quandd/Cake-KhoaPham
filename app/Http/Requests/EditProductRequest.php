@@ -25,12 +25,14 @@ class EditProductRequest extends FormRequest
     {
         return [
             //
+            'img'=>'image',
             'name'=>'unique:products,name,'.$this->segment(4).',id'
         ];
     }
 
     public function messages(){
         return[
+            'name.unique'=>'Ten danh muc da bi trung',
             'name.unique'=>'Ten san pham da bi trung'
         ];
     }
