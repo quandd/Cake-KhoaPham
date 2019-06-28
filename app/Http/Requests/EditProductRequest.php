@@ -25,7 +25,7 @@ class EditProductRequest extends FormRequest
     {
         return [
             //
-            'img'=>'required|image',
+            'img'=>'image',
             'name'=>'required|min:3|max:30|unique:products,name,'.$this->segment(4).',id'
         ];
     }
@@ -33,7 +33,6 @@ class EditProductRequest extends FormRequest
     public function messages(){
         return[
             'img.image'=>'Vui long chon file anh(jpg,png,...)',
-            'img.required'=>'Vui long chon file anh',
             'name.unique'=>'Ten san pham da bi trung',
             'name.required'=>'Moi nhap ten san pham',
             'name.min'=>'Ten san pham phai nhieu hon 3 ki tu',
