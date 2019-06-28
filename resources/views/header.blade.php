@@ -12,6 +12,9 @@
 						
 					@if(Auth::check())
 						<li><a href="#"><i class="fa fa-user"></i>Chào bạn {{Auth::user()->full_name}}</a></li>
+                        @if(Auth::user()->level > 0)
+                                <li><a href="admin-login"><i class="fas fa-signal"></i>Quan li trang web</a></li>
+                            @endif
 						<li><a href="{{route('logout')}}">Đăng xuất</a></li>
 					@else
 						<li><a href="{{route('signin')}}">Đăng kí</a></li>
