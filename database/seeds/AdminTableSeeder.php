@@ -16,8 +16,18 @@ class AdminTableSeeder extends Seeder
         	[
         		'email'=>'admin@gmail.com',
         		'password'=>bcrypt('123456'),
-        		'level'=>1
+        		'level'=>0
         	],
+            [
+                'email'=>'admin1@gmail.com',
+                'password'=>bcrypt('123456'),
+                'level'=>1
+            ],
+            [
+                'email'=>'admin2@gmail.com',
+                'password'=>bcrypt('123456'),
+                'level'=>1
+            ],
         	[
         		'email'=>'quankiu@gmail.com',
         		'password'=>bcrypt('123456'),

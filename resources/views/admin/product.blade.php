@@ -16,9 +16,12 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">Danh sách sản phẩm</div>
 					<div class="panel-body">
+                        @if(Session::has('note'))
+                            <p class="alert alert-danger">{{Session::get('note')}}</p>
+                        @endif
 						@if(Session::has('notification'))
 								<p class="alert alert-success">{{Session::get('notification')}}</p>
-							@endif
+                        @endif
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 								<a href="{{asset('admin/product/add')}}" class="btn btn-primary">Thêm sản phẩm</a>

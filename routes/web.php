@@ -108,24 +108,24 @@ Route::group(['namespace'=>'Admin'],function(){
 			Route::group(['prefix'=>'category'],function(){
 				
 				Route::get('/','CategoryController@getCate');
-				Route::post('add','CategoryController@postCate');
+				Route::post('add','CategoryController@postCate')->middleware('CheckAdmin');
 
-				Route::get('edit/{id}','CategoryController@getEditCate');
-				Route::post('edit/{id}','CategoryController@postEditCate');
+				Route::get('edit/{id}','CategoryController@getEditCate')->middleware('CheckAdmin');
+				Route::post('edit/{id}','CategoryController@postEditCate')->middleware('CheckAdmin');
 
-				Route::get('delete/{id}','CategoryController@getDeleteCate');
+				Route::get('delete/{id}','CategoryController@getDeleteCate')->middleware('CheckAdmin');
 			});
 
 			Route::group(['prefix'=>'product'],function(){
 				Route::get('/','ProductController@getProduct');
 
-				Route::get('add','ProductController@getAddProduct');
-				Route::post('add','ProductController@postAddProduct');
+				Route::get('add','ProductController@getAddProduct')->middleware('CheckAdmin');
+				Route::post('add','ProductController@postAddProduct')->middleware('CheckAdmin');
 
-				Route::get('edit/{id}','ProductController@getEditProduct');
-				Route::post('edit/{id}','ProductController@postEditProduct');
+				Route::get('edit/{id}','ProductController@getEditProduct')->middleware('CheckAdmin');
+				Route::post('edit/{id}','ProductController@postEditProduct')->middleware('CheckAdmin');
 
-				Route::get('delete/{id}','ProductController@getDeleteProduct');
+				Route::get('delete/{id}','ProductController@getDeleteProduct')->middleware('CheckAdmin');
 			});
 
 

@@ -18,6 +18,9 @@
 						</div>
 						<div class="panel-body">
 							@include('errors.note')
+                            @if(Session::has('note'))
+                                <p class="alert alert-danger">{{Session::get('note')}}</p>
+                            @endif
 							@if(Session::has('notification'))
 								<p class="alert alert-success">{{Session::get('notification')}}</p>
 							@endif
