@@ -26,7 +26,7 @@ class AddProductRequest extends FormRequest
         return [
             //
             'img'=>'required|image',
-            'name'=>'required|min:6|max:30|unique:products,name'
+            'name'=>'required|min:3|max:30|unique:products,name'
         ];
     }
     public function messages(){

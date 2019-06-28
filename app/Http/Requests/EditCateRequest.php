@@ -26,7 +26,7 @@ class EditCateRequest extends FormRequest
         return [
             //
             'img'=>'required|image',
-            'name'=>'required|min:6|max:30|unique:type_products,name,'.$this->segment(4).',id'
+            'name'=>'required|min:3|max:30|unique:type_products,name,'.$this->segment(4).',id'
         ];
     }
 

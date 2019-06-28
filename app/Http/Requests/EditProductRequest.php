@@ -26,7 +26,7 @@ class EditProductRequest extends FormRequest
         return [
             //
             'img'=>'required|image',
-            'name'=>'required|min:6|max:30|unique:products,name,'.$this->segment(4).',id'
+            'name'=>'required|min:3|max:30|unique:products,name,'.$this->segment(4).',id'
         ];
     }
 
