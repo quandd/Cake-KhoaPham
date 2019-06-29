@@ -120,7 +120,7 @@ Route::group(['namespace'=>'Admin'],function(){
 				Route::get('/','ProductController@getProduct');
 
 				Route::get('add','ProductController@getAddProduct')->middleware('CheckAdmin');
-				Route::post('add','ProductController@postAddProduct')->middleware('CheckAdmin');
+				Route::post('add','ProductController@postAddProduct');
 
 				Route::get('edit/{id}','ProductController@getEditProduct')->middleware('CheckAdmin');
 				Route::post('edit/{id}','ProductController@postEditProduct')->middleware('CheckAdmin');
