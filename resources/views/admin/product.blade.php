@@ -9,10 +9,10 @@
 				<h1 class="page-header">Sản phẩm</h1>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-xs-12 col-md-12 col-lg-12">
-				
+
 				<div class="panel panel-primary">
 					<div class="panel-heading">Danh sách sản phẩm</div>
 					<div class="panel-body">
@@ -25,7 +25,7 @@
 						<div class="bootstrap-table">
 							<div class="table-responsive">
 								<a class="btn btn-primary add-modal">Thêm sản phẩm</a>
-								<table class="table table-bordered" style="margin-top:20px;">				
+								<table class="table table-bordered" style="margin-top:20px;">
 									<thead>
 										<tr class="bg-primary">
 											<th>ID</th>
@@ -34,13 +34,13 @@
 											<th>Gia khuyen mai</th>
 											<th width="20%">Ảnh sản phẩm</th>
 											<th>Loai san pham</th>
-											<th>Mo ta</th>		
+											<th>Mo ta</th>
 											<th>Tùy chọn</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="newtr">
 										@foreach($products as $product)
-										<tr>
+										<tr id="{{$product->id}}">
 											<td>{{$product->id}}</td>
 											<td>{{$product->name}}</td>
 											<td>{{number_format($product->unit_price)}} đồng</td>
@@ -50,19 +50,19 @@
 											<td>{{number_format($product->promotion_price)}} đồng</td>
 											@endif
 											<td>
-												<img width="100px" height="80px" src="image/product/{{$product->image}}">
+												<img width="100%" src="image/product/{{$product->image}}">
 											</td>
 											<td>{{$product->id_type}}</td>
 											<td>{{$product->description}}</td>
 											<td>
-												<a href="{{asset('admin/product/edit/'.$product->id)}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<a href="{{asset('admin/product/delete/'.$product->id)}}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
+												<a  class="btn btn-warning edit-modal"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+												<button  class="deleteproduct btn btn-danger" onclick="delproduct({{$product->id}})"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>
 											</td>
 										</tr>
 										@endforeach
 									</tbody>
 								</table>
-								<div class="row">{{$products->links()}}</div>							
+								<div class="row">{{$products->links()}}</div>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -140,6 +140,63 @@
             </div>
         </div>
     </div>
+    <!-- Modal form to edit a form -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="id">ID:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="id_edit" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="title">Name:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name_edit" autofocus>
+                                <p class="errorTitle text-center alert alert-danger hidden"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="title">Gia thuong:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="uPrice_edit" autofocus>
+                                <p class="errorTitle text-center alert alert-danger hidden"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="title">Gia khuyen mai:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="pPrice_edit" autofocus>
+                                <p class="errorTitle text-center alert alert-danger hidden"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="content">Content:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="content_edit" cols="40" rows="5"></textarea>
+                                <p class="errorContent text-center alert alert-danger hidden"></p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary edit" data-dismiss="modal">
+                            <span class='glyphicon glyphicon-check'></span> Edit
+                        </button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">
+                            <span class='glyphicon glyphicon-remove'></span> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
@@ -187,13 +244,115 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (data) {
-                    console.log(data);
+                success: function (response) {
+                    console.log(response);
+                    let promotion='';
+                    if(response.promotion_price==0)
+                    {
+                        promotion='<td>Khong khuyen mai</td>';
+                    }
+                    else {
+                        promotion='<td>'+response.promotion_price+'</td>';
+                    }
+                    $('#newtr').prepend('<tr>'+
+                        '<td>'+response.id +'</td>'+
+                        '<td>'+response.name +'</td>'+
+                        '<td>'+response.unit_price +'</td>'+
+
+                        promotion+
+                        '<td><img style="max-width: 100%" alt=""  src="image/product/'+response.image +'"' +'></td>'+
+                        '<td>'+response.id_type +'</td>'+
+                        '<td>'+response.description +'</td>'+
+                        '<td>'+
+                        '<a class="btn btn-warning edit-modal">'+'<i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>'+
+                    '<button  class="deleteproduct btn btn-danger" onclick="delproduct({{$product->id}})"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>'+
+                    '</td>'+
+                    '</tr>');
                 },
                 error: function (data) {
                     console.log('Error:', data);
                 }
             })
         })
+        // Edit a post
+        $(document).on('click', '.edit-modal', function() {
+            $('.modal-title').text('Edit');
+            $('#id_edit').val($(this).data('id'));
+            $('#name_edit').val($(this).data('name'));
+            $('#uPrice_edit').val($(this).data('unit_price'));
+            $('#pPrice_edit').val($(this).data('promotion_price'));
+            $('#content_edit').val($(this).data('desc'));
+            id = $('#id_edit').val();
+            $('#editModal').modal('show');
+        });
+        $('.modal-footer').on('click', '.edit', function() {
+            $.ajax({
+                type: 'PUT',
+                url: "{{asset('admin/product/edit')}}" + id,
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'id': $("#id_edit").val(),
+                    'title': $('#name_edit').val(),
+                    'content': $('#content_edit').val()
+                },
+                success: function(data) {
+                    $('.errorTitle').addClass('hidden');
+                    $('.errorContent').addClass('hidden');
+
+                    if ((data.errors)) {
+                        setTimeout(function () {
+                            $('#editModal').modal('show');
+                            toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
+                        }, 500);
+
+                        if (data.errors.title) {
+                            $('.errorTitle').removeClass('hidden');
+                            $('.errorTitle').text(data.errors.title);
+                        }
+                        if (data.errors.content) {
+                            $('.errorContent').removeClass('hidden');
+                            $('.errorContent').text(data.errors.content);
+                        }
+                    } else {
+                        toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
+                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='edit_published' data-id='" + data.id + "'></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+
+                        if (data.is_published) {
+                            $('.edit_published').prop('checked', true);
+                            $('.edit_published').closest('tr').addClass('warning');
+                        }
+                        $('.edit_published').iCheck({
+                            checkboxClass: 'icheckbox_square-yellow',
+                            radioClass: 'iradio_square-yellow',
+                            increaseArea: '20%'
+                        });
+                        $('.edit_published').on('ifToggled', function(event) {
+                            $(this).closest('tr').toggleClass('warning');
+                        });
+
+                    }
+                }
+            });
+        });
+        //xoa product
+      function delproduct (id) {
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+          $.ajax({
+              url: "http://localhost/admin/product/delete/"+id,
+              type: 'get',
+              dataType:'json',
+              success: function (response) {
+                  $('#'+id).remove();
+              },
+              error: function (data) {
+                  console.log('Error:', data);
+              }
+          })
+
+        }
     </script>
 @endsection
