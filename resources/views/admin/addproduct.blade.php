@@ -83,7 +83,6 @@
         </div><!--/.row-->
     </div>    <!--/.main-->
     <script>
-
         $('#addproduct').on('click', function (event) {
             event.preventDefault();
             $.ajaxSetup({

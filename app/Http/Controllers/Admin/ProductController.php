@@ -16,7 +16,8 @@ class ProductController extends Controller
     public function getProduct()
     {
         $products = Product::paginate(10);
-        return view('admin.product', compact('products'));
+        $catelist = ProductType::all();
+        return view('admin.product', compact('products','catelist'));
     }
 
     public function getEditProduct($id)
