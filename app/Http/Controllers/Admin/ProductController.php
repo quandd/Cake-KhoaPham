@@ -80,7 +80,7 @@ class ProductController extends Controller
     public function getDeleteProduct($id)
     {
         Product::destroy($id);
-        return response()->json(['data'=>'xoa thanh cong']);
+        return response()->json(['data'=>'Xoa thanh cong']);
     }
 
 }

@@ -59,7 +59,6 @@
 									</div>
 								</div>
 								@endforeach
-							
 
 								<div class="cart-caption">
 									<div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{Session('cart')->totalPrice}} đồng</span></div>

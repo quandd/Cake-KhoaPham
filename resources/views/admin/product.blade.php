@@ -140,6 +140,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal form to edit a form -->
     <div id="editModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -197,6 +198,7 @@
             </div>
         </div>
     </div>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
@@ -224,7 +226,6 @@
             $('#addModal').modal('show');
         });
         $('.modal-footer').on('click', '.add', function() {
-            event.preventDefault();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -258,7 +259,6 @@
                         '<td>'+response.id +'</td>'+
                         '<td>'+response.name +'</td>'+
                         '<td>'+response.unit_price +'</td>'+
-
                         promotion+
                         '<td><img style="max-width: 100%" alt=""  src="image/product/'+response.image +'"' +'></td>'+
                         '<td>'+response.id_type +'</td>'+
@@ -274,7 +274,8 @@
                 }
             })
         })
-        // Edit a post
+
+        // Edit a product
         $(document).on('click', '.edit-modal', function() {
             $('.modal-title').text('Edit');
             $('#id_edit').val($(this).data('id'));
@@ -288,7 +289,7 @@
         $('.modal-footer').on('click', '.edit', function() {
             $.ajax({
                 type: 'PUT',
-                url: "{{asset('admin/product/edit')}}" + id,
+                url: "http://localhost/admin/product/edit/" + id,
                 data: {
                     '_token': $('input[name=_token]').val(),
                     'id': $("#id_edit").val(),
@@ -334,6 +335,7 @@
                 }
             });
         });
+
         //xoa product
       function delproduct (id) {
           $.ajaxSetup({
@@ -346,6 +348,7 @@
               type: 'get',
               dataType:'json',
               success: function (response) {
+                  toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
                   $('#'+id).remove();
               },
               error: function (data) {

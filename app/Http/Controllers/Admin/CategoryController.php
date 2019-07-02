@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     //
     public function getCate(){
-    	$cates =  ProductType::paginate(5);
+    	$cates =  ProductType::withCount('product')->paginate(5);
     	return view('admin.category', compact('cates'));
     }
 
