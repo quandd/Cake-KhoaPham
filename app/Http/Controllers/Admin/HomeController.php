@@ -9,12 +9,14 @@ use Auth;
 class HomeController extends Controller
 {
     //
-    public function getHome(){
-    	return view('admin.index');
+    public function getHome()
+    {
+        return view('admin.index');
     }
 
-    public function getLogout(){
-    	Auth::logout();
-    	return redirect()->intended('admin-login');
+    public function getLogout()
+    {
+        Auth::logout();
+        return redirect()->intended('admin-login');
     }
 }

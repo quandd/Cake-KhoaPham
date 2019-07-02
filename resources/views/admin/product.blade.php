@@ -3,76 +3,81 @@
 @section('title','San pham ')
 
 @section('main')
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Sản phẩm</h1>
-			</div>
-		</div><!--/.row-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Sản phẩm</h1>
+            </div>
+        </div><!--/.row-->
 
-		<div class="row">
-			<div class="col-xs-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-12">
 
-				<div class="panel panel-primary">
-					<div class="panel-heading">Danh sách sản phẩm</div>
-					<div class="panel-body">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Danh sách sản phẩm</div>
+                    <div class="panel-body">
                         @if(Session::has('note'))
                             <p class="alert alert-danger">{{Session::get('note')}}</p>
                         @endif
-						@if(Session::has('notification'))
-								<p class="alert alert-success">{{Session::get('notification')}}</p>
+                        @if(Session::has('notification'))
+                            <p class="alert alert-success">{{Session::get('notification')}}</p>
                         @endif
-						<div class="bootstrap-table">
-							<div class="table-responsive">
-								<a class="btn btn-primary add-modal">Thêm sản phẩm</a>
-								<table class="table table-bordered" style="margin-top:20px;">
-									<thead>
-										<tr class="bg-primary">
-											<th>ID</th>
-											<th width="30%">Tên Sản phẩm</th>
-											<th>Gia thuong</th>
-											<th>Gia khuyen mai</th>
-											<th width="20%">Ảnh sản phẩm</th>
-											<th>Loai san pham</th>
-											<th>Mo ta</th>
-											<th>Tùy chọn</th>
-										</tr>
-									</thead>
-									<tbody id="newtr">
-										@foreach($products as $product)
-										<tr id="{{$product->id}}">
-											<td>{{$product->id}}</td>
-											<td>{{$product->name}}</td>
-											<td>{{number_format($product->unit_price)}} đồng</td>
-											@if($product->promotion_price==0)
-											<td>Khong khuyen mai</td>
-											@else
-											<td>{{number_format($product->promotion_price)}} đồng</td>
-											@endif
-											<td>
-												<img width="100%" src="image/product/{{$product->image}}">
-											</td>
-											<td>{{$product->id_type}}</td>
-											<td>{{$product->description}}</td>
-											<td>
-												<a  class="btn btn-warning edit-modal"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-												<button  class="deleteproduct btn btn-danger" onclick="delproduct({{$product->id}})"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>
-											</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
-								<div class="row">{{$products->links()}}</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-	</div>	<!--/.main-->
+                        <div class="bootstrap-table">
+                            <div class="table-responsive">
+                                <a class="btn btn-primary add-modal">Thêm sản phẩm</a>
+                                <table class="table table-bordered" style="margin-top:20px;">
+                                    <thead>
+                                    <tr class="bg-primary">
+                                        <th>ID</th>
+                                        <th width="30%">Tên Sản phẩm</th>
+                                        <th>Gia thuong</th>
+                                        <th>Gia khuyen mai</th>
+                                        <th width="20%">Ảnh sản phẩm</th>
+                                        <th>Loai san pham</th>
+                                        <th>Mo ta</th>
+                                        <th>Tùy chọn</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="newtr">
+                                    @foreach($products as $product)
+                                        <tr id="{{$product->id}}">
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{number_format($product->unit_price)}} đồng</td>
+                                            @if($product->promotion_price==0)
+                                                <td>Khong khuyen mai</td>
+                                            @else
+                                                <td>{{number_format($product->promotion_price)}} đồng</td>
+                                            @endif
+                                            <td>
+                                                <img width="100%" src="image/product/{{$product->image}}">
+                                            </td>
+                                            <td>{{$product->id_type}}</td>
+                                            <td>{{$product->description}}</td>
+                                            <td>
+                                                <a class="btn btn-warning edit-modal"><i class="fa fa-pencil"
+                                                                                         aria-hidden="true"></i> Sửa</a>
+                                                <button class="deleteproduct btn btn-danger"
+                                                        onclick="delproduct({{$product->id}})"><i class="fa fa-trash"
+                                                                                                  aria-hidden="true"></i>
+                                                    Xóa
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <div class="row">{{$products->links()}}</div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div>    <!--/.main-->
 
-{{--    Modal form to add product--}}
+    {{--    Modal form to add product--}}
     <div id="addModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -200,10 +205,12 @@
     </div>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
     <!-- Bootstrap JavaScript -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
 
     <!-- toastr notifications -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -213,7 +220,7 @@
 
     <!-- Delay table load until everything else is loaded -->
     <script>
-        $(window).load(function(){
+        $(window).load(function () {
             $('#postTable').removeAttr('style');
         })
     </script>
@@ -221,11 +228,11 @@
     <!-- AJAX CRUD operations -->
     <script type="text/javascript">
         // add a new product
-        $(document).on('click', '.add-modal', function() {
+        $(document).on('click', '.add-modal', function () {
             $('.modal-title').text('Add Product');
             $('#addModal').modal('show');
         });
-        $('.modal-footer').on('click', '.add', function() {
+        $('.modal-footer').on('click', '.add', function () {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -247,27 +254,25 @@
                 processData: false,
                 success: function (response) {
                     console.log(response);
-                    let promotion='';
-                    if(response.promotion_price==0)
-                    {
-                        promotion='<td>Khong khuyen mai</td>';
+                    let promotion = '';
+                    if (response.promotion_price == 0) {
+                        promotion = '<td>Khong khuyen mai</td>';
+                    } else {
+                        promotion = '<td>' + response.promotion_price + '</td>';
                     }
-                    else {
-                        promotion='<td>'+response.promotion_price+'</td>';
-                    }
-                    $('#newtr').prepend('<tr>'+
-                        '<td>'+response.id +'</td>'+
-                        '<td>'+response.name +'</td>'+
-                        '<td>'+response.unit_price +'</td>'+
-                        promotion+
-                        '<td><img style="max-width: 100%" alt=""  src="image/product/'+response.image +'"' +'></td>'+
-                        '<td>'+response.id_type +'</td>'+
-                        '<td>'+response.description +'</td>'+
-                        '<td>'+
-                        '<a class="btn btn-warning edit-modal">'+'<i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>'+
-                    '<button  class="deleteproduct btn btn-danger" onclick="delproduct({{$product->id}})"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>'+
-                    '</td>'+
-                    '</tr>');
+                    $('#newtr').prepend('<tr>' +
+                        '<td>' + response.id + '</td>' +
+                        '<td>' + response.name + '</td>' +
+                        '<td>' + response.unit_price + '</td>' +
+                        promotion +
+                        '<td><img style="max-width: 100%" alt=""  src="image/product/' + response.image + '"' + '></td>' +
+                        '<td>' + response.id_type + '</td>' +
+                        '<td>' + response.description + '</td>' +
+                        '<td>' +
+                        '<a class="btn btn-warning edit-modal">' + '<i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>' +
+                        '<button  class="deleteproduct btn btn-danger" onclick="delproduct({{$product->id}})"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>' +
+                        '</td>' +
+                        '</tr>');
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -276,7 +281,7 @@
         })
 
         // Edit a product
-        $(document).on('click', '.edit-modal', function() {
+        $(document).on('click', '.edit-modal', function () {
             $('.modal-title').text('Edit');
             $('#id_edit').val($(this).data('id'));
             $('#name_edit').val($(this).data('name'));
@@ -286,7 +291,7 @@
             id = $('#id_edit').val();
             $('#editModal').modal('show');
         });
-        $('.modal-footer').on('click', '.edit', function() {
+        $('.modal-footer').on('click', '.edit', function () {
             $.ajax({
                 type: 'PUT',
                 url: "http://localhost/admin/product/edit/" + id,
@@ -296,7 +301,7 @@
                     'title': $('#name_edit').val(),
                     'content': $('#content_edit').val()
                 },
-                success: function(data) {
+                success: function (data) {
                     $('.errorTitle').addClass('hidden');
                     $('.errorContent').addClass('hidden');
 
@@ -327,7 +332,7 @@
                             radioClass: 'iradio_square-yellow',
                             increaseArea: '20%'
                         });
-                        $('.edit_published').on('ifToggled', function(event) {
+                        $('.edit_published').on('ifToggled', function (event) {
                             $(this).closest('tr').toggleClass('warning');
                         });
 
@@ -337,24 +342,24 @@
         });
 
         //xoa product
-      function delproduct (id) {
-          $.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              }
-          });
-          $.ajax({
-              url: "http://localhost/admin/product/delete/"+id,
-              type: 'get',
-              dataType:'json',
-              success: function (response) {
-                  toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
-                  $('#'+id).remove();
-              },
-              error: function (data) {
-                  console.log('Error:', data);
-              }
-          })
+        function delproduct(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "http://localhost/admin/product/delete/" + id,
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    toastr.success('Successfully deleted Post!', 'Success Alert', {timeOut: 5000});
+                    $('#' + id).remove();
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            })
 
         }
     </script>

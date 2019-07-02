@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
@@ -17,13 +18,13 @@ class LoginController extends Controller
         return view('page.dangnhap');
     }
 
-    public function checkLogin(LoginRequest $req){
-        $credentials = array('email'=>$req->email,'password'=>$req->password);
-        if(Auth::attempt($credentials)){
-            return redirect()->back()->with(['flag'=>'success','message'=>'Đăng nhập thành công!']);
-        }
-        else{
-            return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập thất bại!']);
+    public function checkLogin(LoginRequest $req)
+    {
+        $credentials = array('email' => $req->email, 'password' => $req->password);
+        if (Auth::attempt($credentials)) {
+            return redirect()->back()->with(['flag' => 'success', 'message' => 'Đăng nhập thành công!']);
+        } else {
+            return redirect()->back()->with(['flag' => 'danger', 'message' => 'Đăng nhập thất bại!']);
         }
     }
 
@@ -40,7 +41,7 @@ class LoginController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,7 +52,7 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -62,7 +63,7 @@ class LoginController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -73,8 +74,8 @@ class LoginController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -85,7 +86,7 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

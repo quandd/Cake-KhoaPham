@@ -15,9 +15,9 @@ class ProductController extends Controller
     //
     public function getProduct()
     {
-        $products = Product::orderBy('id','desc')->paginate(5);
+        $products = Product::orderBy('id', 'desc')->paginate(5);
         $catelist = ProductType::all();
-        return view('admin.product', compact('products','catelist'));
+        return view('admin.product', compact('products', 'catelist'));
     }
 
     public function getEditProduct($id)
@@ -74,13 +74,13 @@ class ProductController extends Controller
             $product->image = $extension;
         }
         $product->save();
-        return response()->json( $product);
+        return response()->json($product);
     }
 
     public function getDeleteProduct($id)
     {
         Product::destroy($id);
-        return response()->json(['data'=>'Xoa thanh cong']);
+        return response()->json(['data' => 'Xoa thanh cong']);
     }
 
 }
