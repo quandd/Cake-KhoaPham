@@ -30,6 +30,7 @@ class NameLengthRule implements Rule
         }
     }
 
+
     /**
      * Get the validation error message.
      *

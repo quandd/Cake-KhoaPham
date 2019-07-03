@@ -94,11 +94,11 @@
                         <div class="beta-products-list">
                             <h4>Sản phẩm khuyến mãi</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Tìm thấy {{count($sanpham_khuyenmai)}} sản phẩm</p>
+                                <p class="pull-left">Tìm thấy {{count($promotion_product)}} sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
-                                @foreach($sanpham_khuyenmai as $spkm)
+                                @foreach($promotion_product as $spkm)
                                     <div class="col-sm-3" style="margin-bottom: 30px">
                                         <div class="single-item">
                                             @if($spkm->promotion_price!=0)
@@ -132,7 +132,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="row">{{$sanpham_khuyenmai->links()}}</div>
+                            <div class="row">{{$promotion_product->links()}}</div>
                         </div> <!-- .beta-products-list -->
                     </div>
                 </div> <!-- end section with sidebar and main content -->

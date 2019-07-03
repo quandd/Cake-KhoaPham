@@ -26,24 +26,24 @@ class PageController extends Controller
     {
         $slide = Slide::all();
         $new_product = Product::where('new', 1)->paginate(4, ['*'], 'pag');
-        $sanpham_khuyenmai = Product::where('promotion_price', '<>', 0)->paginate(8);
-        return view('page.trangchu', compact('slide', 'new_product', 'sanpham_khuyenmai'));
+        $promotion_product = Product::where('promotion_price', '<>', 0)->paginate(8);
+        return view('page.trangchu', compact('slide', 'new_product', 'promotion_product'));
     }
 
     public function getCategory($type)
     {
-        $sp_theoloai = Product::where('id_type', $type)->get();
-        $sp_khac = Product::where('id_type', '<>', $type)->paginate(3);
-        $loai = ProductType::all();
-        $loai_sp = ProductType::where('id', $type)->first();
-        return view('page.loai_sanpham', compact('sp_theoloai', 'sp_khac', 'loai', 'loai_sp'));
+        $product_type = Product::where('id_type', $type)->get();
+        $product_other = Product::where('id_type', '<>', $type)->paginate(3);
+        $types = ProductType::all();
+        $categories = ProductType::where('id', $type)->first();
+        return view('page.loai_sanpham', compact('product_type', 'product_other', 'types', 'categories'));
     }
 
     public function getProduct(Request $req)
     {
-        $sanpham = Product::where('id', $req->id)->first();
-        $sp_tuongtu = Product::where('id_type', $sanpham->id_type)->paginate(6);
-        return view('page.chitiet_sanpham', compact('sanpham', 'sp_tuongtu'));
+        $products = Product::where('id', $req->id)->first();
+        $products_same = Product::where('id_type', $products->id_type)->paginate(6);
+        return view('page.chitiet_sanpham', compact('products', 'products_same'));
     }
 
     public function getContact()
