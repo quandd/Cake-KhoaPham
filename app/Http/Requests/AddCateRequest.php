@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\NameLengthRule;
 
 class AddCateRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class AddCateRequest extends FormRequest
         return [
             //
             'img'=>'required|image',
-            'name'=>'required|min:3|max:30|unique:type_products,name'
+            'name'=>['required','unique:type_products,name',new NameLengthRule]
         ];
     }
 
@@ -36,8 +37,6 @@ class AddCateRequest extends FormRequest
             'img.image'=>'Vui long chon file anh(jpg,png,...)',
             'img.required'=>'Vui long chon file anh',
             'name.required'=>'Moi nhap ten danh muc',
-            'name.min'=>'Ten danh muc phai nhieu hon 3 ki tu',
-            'name.max'=>'Ten danh muc phai it hon 30 ki tu'
         ];
     }
 }

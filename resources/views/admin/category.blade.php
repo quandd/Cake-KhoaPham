@@ -73,7 +73,10 @@
                                             <a href="{{asset('admin/category/edit/'.$cate->id)}}"
                                                class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span>
                                                 Sửa</a>
-                                            {{--	Xoa danh muc san pham		                    		<a href="{{asset('admin/category/delete/'.$cate->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>--}}
+                                            <a href="{{asset('admin/category/delete/'.$cate->id)}}"
+                                               onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                                               class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>
+                                                Xóa</a>
                                         </td>
                                         <td>{{$cate->product_count}}</td>
                                     </tr>

@@ -55,7 +55,7 @@
                                             <td>{{$product->id_type}}</td>
                                             <td>{{$product->description}}</td>
                                             <td>
-                                                <a class="btn btn-warning edit-modal"><i class="fa fa-pencil"
+                                                <a href="{{asset('admin/product/edit/'.$product->id)}}" class="btn btn-warning edit-modal"><i class="fa fa-pencil"
                                                                                          aria-hidden="true"></i> Sửa</a>
                                                 <button class="deleteproduct btn btn-danger"
                                                         onclick="delproduct({{$product->id}})"><i class="fa fa-trash"
