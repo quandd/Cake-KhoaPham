@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\UpperCase;
 
 class SigninRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class SigninRequest extends FormRequest
         return [
                 'email'=>'required|email|unique:users,email',
                 'password'=>'required|min:6|max:20',
-                'fullname'=>'required|',
+                'fullname'=>['required',new UpperCase],
                 're_password'=>'required|same:password'
             ];
     }
