@@ -39,6 +39,9 @@
                         <input type="text" value="" name="key" id="s" placeholder="Nhập từ khóa..."/>
                         <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                     </form>
+                    @if(Session::has('notice'))
+                        <div class="alert alert-danger">{{Session::get('notice')}}</div>
+                    @endif
                 </div>
 
                 <div class="beta-comp">
