@@ -28,9 +28,9 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         view()->composer('header', function ($view) {
-            $loai_sp = ProductType::all();
+            $cates = ProductType::all();
 
-            $view->with('loai_sp', $loai_sp);
+            $view->with('cates', $cates);
         });
         view()->composer(['header', 'page.dathang'], function ($view) {
             if (Session('cart')) {
