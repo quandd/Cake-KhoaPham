@@ -55,7 +55,8 @@
                                             <td>{{$product->id_type}}</td>
                                             <td>{{$product->description}}</td>
                                             <td>
-                                                <a href="{{asset('admin/product/edit/'.$product->id)}}" class="btn btn-warning edit-modal"><i class="fa fa-pencil"
+                                                <a href="{{asset('admin/product/edit/'.$product->id)}}"
+                                                   class="btn btn-warning edit-modal"><i class="fa fa-pencil"
                                                                                          aria-hidden="true"></i> Sửa</a>
                                                 <button class="deleteproduct btn btn-danger"
                                                         onclick="delproduct({{$product->id}})"><i class="fa fa-trash"
@@ -86,9 +87,7 @@
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post"
-                          {{--action="{{asset('admin/product/add')}}"--}} enctype="multipart/form-data"
-                          class='formId '>
+                    <form method="post" enctype="multipart/form-data" class='formId'>
                         @csrf
                         <div class="form-group">
                             <label>Tên sản phẩm</label>
@@ -218,13 +217,6 @@
     <!-- icheck checkboxes -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
-    <!-- Delay table load until everything else is loaded -->
-    <script>
-        $(window).load(function () {
-            $('#postTable').removeAttr('style');
-        })
-    </script>
-
     <!-- AJAX CRUD operations -->
     <script type="text/javascript">
         // add a new product
@@ -260,7 +252,7 @@
                     } else {
                         promotion = '<td>' + response.promotion_price + '</td>';
                     }
-                    $('#newtr').prepend('<tr>' +
+                    $('#newtr').prepend('<tr id="'+response.id+'">' +
                         '<td>' + response.id + '</td>' +
                         '<td>' + response.name + '</td>' +
                         '<td>' + response.unit_price + '</td>' +
@@ -269,8 +261,8 @@
                         '<td>' + response.id_type + '</td>' +
                         '<td>' + response.description + '</td>' +
                         '<td>' +
-                        '<a class="btn btn-warning edit-modal">' + '<i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>' +
-                        '<button  class="deleteproduct btn btn-danger" onclick="delproduct({{$product->id}})"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>' +
+                        '<a class="btn btn-warning edit-modal" href="http://localhost/admin/product/edit/'+response.id+'">' + '<i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>' +
+                        '<button  class="deleteproduct btn btn-danger" onclick="delproduct('+response.id+')"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</button>' +
                         '</td>' +
                         '</tr>');
                 },
@@ -281,65 +273,65 @@
         })
 
         // Edit a product
-        $(document).on('click', '.edit-modal', function () {
-            $('.modal-title').text('Edit');
-            $('#id_edit').val($(this).data('id'));
-            $('#name_edit').val($(this).data('name'));
-            $('#uPrice_edit').val($(this).data('unit_price'));
-            $('#pPrice_edit').val($(this).data('promotion_price'));
-            $('#content_edit').val($(this).data('desc'));
-            id = $('#id_edit').val();
-            $('#editModal').modal('show');
-        });
-        $('.modal-footer').on('click', '.edit', function () {
-            $.ajax({
-                type: 'PUT',
-                url: "http://localhost/admin/product/edit/" + id,
-                data: {
-                    '_token': $('input[name=_token]').val(),
-                    'id': $("#id_edit").val(),
-                    'title': $('#name_edit').val(),
-                    'content': $('#content_edit').val()
-                },
-                success: function (data) {
-                    $('.errorTitle').addClass('hidden');
-                    $('.errorContent').addClass('hidden');
-
-                    if ((data.errors)) {
-                        setTimeout(function () {
-                            $('#editModal').modal('show');
-                            toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
-                        }, 500);
-
-                        if (data.errors.title) {
-                            $('.errorTitle').removeClass('hidden');
-                            $('.errorTitle').text(data.errors.title);
-                        }
-                        if (data.errors.content) {
-                            $('.errorContent').removeClass('hidden');
-                            $('.errorContent').text(data.errors.content);
-                        }
-                    } else {
-                        toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
-                        $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='edit_published' data-id='" + data.id + "'></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
-
-                        if (data.is_published) {
-                            $('.edit_published').prop('checked', true);
-                            $('.edit_published').closest('tr').addClass('warning');
-                        }
-                        $('.edit_published').iCheck({
-                            checkboxClass: 'icheckbox_square-yellow',
-                            radioClass: 'iradio_square-yellow',
-                            increaseArea: '20%'
-                        });
-                        $('.edit_published').on('ifToggled', function (event) {
-                            $(this).closest('tr').toggleClass('warning');
-                        });
-
-                    }
-                }
-            });
-        });
+        // $(document).on('click', '.edit-modal', function () {
+        //     $('.modal-title').text('Edit');
+        //     $('#id_edit').val($(this).data('id'));
+        //     $('#name_edit').val($(this).data('name'));
+        //     $('#uPrice_edit').val($(this).data('unit_price'));
+        //     $('#pPrice_edit').val($(this).data('promotion_price'));
+        //     $('#content_edit').val($(this).data('desc'));
+        //     id = $('#id_edit').val();
+        //     $('#editModal').modal('show');
+        // });
+        // $('.modal-footer').on('click', '.edit', function () {
+        //     $.ajax({
+        //         type: 'PUT',
+        //         url: "http://localhost/admin/product/edit/" + id,
+        //         data: {
+        //             '_token': $('input[name=_token]').val(),
+        //             'id': $("#id_edit").val(),
+        //             'title': $('#name_edit').val(),
+        //             'content': $('#content_edit').val()
+        //         },
+        //         success: function (data) {
+        //             $('.errorTitle').addClass('hidden');
+        //             $('.errorContent').addClass('hidden');
+        //
+        //             if ((data.errors)) {
+        //                 setTimeout(function () {
+        //                     $('#editModal').modal('show');
+        //                     toastr.error('Validation error!', 'Error Alert', {timeOut: 5000});
+        //                 }, 500);
+        //
+        //                 if (data.errors.title) {
+        //                     $('.errorTitle').removeClass('hidden');
+        //                     $('.errorTitle').text(data.errors.title);
+        //                 }
+        //                 if (data.errors.content) {
+        //                     $('.errorContent').removeClass('hidden');
+        //                     $('.errorContent').text(data.errors.content);
+        //                 }
+        //             } else {
+        //                 toastr.success('Successfully updated Post!', 'Success Alert', {timeOut: 5000});
+        //                 $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'><td>" + data.id + "</td><td>" + data.title + "</td><td>" + data.content + "</td><td class='text-center'><input type='checkbox' class='edit_published' data-id='" + data.id + "'></td><td>Right now</td><td><button class='show-modal btn btn-success' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-eye-open'></span> Show</button> <button class='edit-modal btn btn-info' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-edit'></span> Edit</button> <button class='delete-modal btn btn-danger' data-id='" + data.id + "' data-title='" + data.title + "' data-content='" + data.content + "'><span class='glyphicon glyphicon-trash'></span> Delete</button></td></tr>");
+        //
+        //                 if (data.is_published) {
+        //                     $('.edit_published').prop('checked', true);
+        //                     $('.edit_published').closest('tr').addClass('warning');
+        //                 }
+        //                 $('.edit_published').iCheck({
+        //                     checkboxClass: 'icheckbox_square-yellow',
+        //                     radioClass: 'iradio_square-yellow',
+        //                     increaseArea: '20%'
+        //                 });
+        //                 $('.edit_published').on('ifToggled', function (event) {
+        //                     $(this).closest('tr').toggleClass('warning');
+        //                 });
+        //
+        //             }
+        //         }
+        //     });
+        // });
 
         //xoa product
         function delproduct(id) {
