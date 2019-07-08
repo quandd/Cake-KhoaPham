@@ -12,13 +12,13 @@ use App\Http\Requests\EditCateRequest;
 class CategoryController extends Controller
 {
     //
-    public function getCate()
+    public function index()
     {
         $cates = ProductType::withCount('product')->paginate(5);
         return view('admin.category', compact('cates'));
     }
 
-    public function postCate(AddCateRequest $request)
+    public function store(AddCateRequest $request)
     {
         $category = new ProductType;
         $category->name = $request->name;
@@ -31,13 +31,13 @@ class CategoryController extends Controller
         return back()->with('notification', 'Them thanh cong.');
     }
 
-    public function getEditCate($id)
+    public function edit($id)
     {
         $cates = ProductType::find($id);
         return view('admin.editcategory', compact('cates'));
     }
 
-    public function postEditCate(EditCateRequest $request, $id)
+    public function update(EditCateRequest $request, $id)
     {
         $category = ProductType::find($id);
         $category->name = $request->name;
@@ -52,7 +52,7 @@ class CategoryController extends Controller
         return redirect()->intended('admin/category')->with('notification', 'Sua thanh cong.');
     }
 
-    public function getDeleteCate($id)
+    public function destroy($id)
     {
         ProductType::destroy($id);
         return back()->with('notification', 'Xoa thanh cong.');

@@ -106,13 +106,13 @@ Route::group(['namespace' => 'Admin'], function () {
 
         Route::group(['prefix' => 'category'], function () {
 
-            Route::get('/', 'CategoryController@getCate');
-            Route::post('add', 'CategoryController@postCate')->middleware('CheckAdmin');
+            Route::get('/', 'CategoryController@index');
+            Route::post('add', 'CategoryController@store')->middleware('CheckAdmin');
 
-            Route::get('edit/{id}', 'CategoryController@getEditCate');
-            Route::post('edit/{id}', 'CategoryController@postEditCate')->middleware('CheckAdmin');
+            Route::get('edit/{id}', 'CategoryController@edit');
+            Route::post('edit/{id}', 'CategoryController@update')->middleware('CheckAdmin');
 
-            Route::get('delete/{id}', 'CategoryController@getDeleteCate')->middleware('CheckAdmin');
+            Route::get('delete/{id}', 'CategoryController@destroy')->middleware('CheckAdmin');
         });
 
         Route::group(['prefix' => 'product'], function () {
