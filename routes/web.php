@@ -94,8 +94,8 @@ Route::get('search', [
 Route::group(['namespace' => 'Admin'], function () {
 
     Route::group(['prefix' => 'admin-login', 'middleware' => 'CheckLogedIn'], function () {
-        Route::get('/', 'LoginController@getLogin');
-        Route::post('/', 'LoginController@postLogin');
+        Route::get('/', 'LoginController@index');
+        Route::post('/', 'LoginController@store');
     });
 
     Route::get('logout', 'HomeController@getLogout');

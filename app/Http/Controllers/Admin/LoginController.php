@@ -9,12 +9,12 @@ use Auth;
 class LoginController extends Controller
 {
     //
-    public function getLogin()
+    public function index()
     {
         return view('admin.login');
     }
 
-    public function postLogin(Request $request)
+    public function store(Request $request)
     {
         $arr = ['email' => $request->email, 'password' => $request->password];
         if ($request->remember = 'Remember Me') {
