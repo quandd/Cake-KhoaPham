@@ -169,21 +169,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="title">Gia thuong:</label>
+                            <label class="control-label col-sm-2" for="uPrice_edit">Gia thuong:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="uPrice_edit" autofocus>
                                 <p class="errorTitle text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="title">Gia khuyen mai:</label>
+                            <label class="control-label col-sm-2" for="pPrice_edit">Gia khuyen mai:</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="pPrice_edit" autofocus>
                                 <p class="errorTitle text-center alert alert-danger hidden"></p>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="content">Content:</label>
+                            <label class="control-label col-sm-2" for="content_edit">Content:</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="content_edit" cols="40" rows="5"></textarea>
                                 <p class="errorContent text-center alert alert-danger hidden"></p>
