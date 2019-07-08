@@ -102,7 +102,7 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogedOut'], function () {
 
-        Route::get('/', 'HomeController@getHome');
+        Route::get('/', 'HomeController@index');
 
         Route::group(['prefix' => 'category'], function () {
 
