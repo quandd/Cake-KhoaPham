@@ -42,7 +42,7 @@ Route::get('gioi-thieu', [
 
 Route::get('add-to-cart/{id}', [
     'as' => 'themgiohang',
-    'uses' => 'CartController@create'
+    'uses' => 'CartController@store'
 ]);
 
 Route::get('del-cart/{id}', [
@@ -126,8 +126,6 @@ Route::group(['namespace' => 'Admin'], function () {
 
             Route::get('delete/{id}', 'ProductController@destroy')->middleware('CheckAdmin');
         });
-
-
     });
 });
 
