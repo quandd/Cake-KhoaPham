@@ -116,15 +116,15 @@ Route::group(['namespace' => 'Admin'], function () {
         });
 
         Route::group(['prefix' => 'product'], function () {
-            Route::get('/', 'ProductController@getProduct');
+            Route::get('/', 'ProductController@index');
 
-            Route::get('add', 'ProductController@getAddProduct');
-            Route::post('add', 'ProductController@postAddProduct')->middleware('CheckAdmin');
+            Route::get('add', 'ProductController@create');
+            Route::post('add', 'ProductController@store')->middleware('CheckAdmin');
 
-            Route::get('edit/{id}', 'ProductController@getEditProduct');
-            Route::post('edit/{id}', 'ProductController@postEditProduct')->middleware('CheckAdmin');
+            Route::get('edit/{id}', 'ProductController@edit');
+            Route::post('edit/{id}', 'ProductController@update')->middleware('CheckAdmin');
 
-            Route::get('delete/{id}', 'ProductController@getDeleteProduct')->middleware('CheckAdmin');
+            Route::get('delete/{id}', 'ProductController@destroy')->middleware('CheckAdmin');
         });
 
 

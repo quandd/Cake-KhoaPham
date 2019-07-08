@@ -13,28 +13,28 @@ use App\Http\Requests\EditProductRequest;
 class ProductController extends Controller
 {
     //
-    public function getProduct()
+    public function index()
     {
         $products = Product::orderBy('id', 'desc')->paginate(5);
         $catelist = ProductType::all();
         return view('admin.product', compact('products', 'catelist'));
     }
 
-    public function getEditProduct($id)
+    public function edit($id)
     {
         $products = Product::find($id);
         $catelist = ProductType::all();
         return view('admin.editproduct', compact('products', 'catelist'));
     }
 
-    public function getAddProduct()
+    public function create()
     {
         $data['catelist'] = ProductType::all();
         return view('admin.addproduct', $data);
     }
 
     ////////////////////////////////////
-    public function postEditProduct(EditProductRequest $request, $id)
+    public function update(EditProductRequest $request, $id)
     {
         $product = Product::find($id);
         $product->name = $request->name;
@@ -57,7 +57,7 @@ class ProductController extends Controller
 
     ///////////////////////////////////
 
-    public function postAddProduct(Request $request)
+    public function store(Request $request)
     {
         $product = new Product();
         $product->name = $request->name;
@@ -77,7 +77,7 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function getDeleteProduct($id)
+    public function destroy($id)
     {
         Product::destroy($id);
         return response()->json(['data' => 'Xoa thanh cong']);
