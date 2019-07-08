@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     //
-    public function getIndex()
+    public function index()
     {
         $slide = Slide::all();
         $new_product = Product::where('new', 1)->paginate(4, ['*'], 'pag');
